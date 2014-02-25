@@ -107,9 +107,9 @@ if($action = filter_input(INPUT_POST, 'action'))
 	if($action === 'addComment')
 	{
 		// Получаем данные из запроса
-		$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$username = filter_input(INPUT_POST, 'username');
 		$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-		$text = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$text = filter_input(INPUT_POST, 'comment');
 		
 		// Проверяем капчу
 		if(!isset($_POST['captcha']) || ($_POST['captcha'] != $_SESSION['captcha_keystring']))
