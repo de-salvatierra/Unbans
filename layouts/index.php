@@ -34,7 +34,7 @@ if(isset($_POST['captcha']))
 		exit($data->jsonError('success', '', 'Заявка создана успешно'
 				. '. Проследить за статусом заявки можно '
 				. '<a href="http://'.$_SERVER['HTTP_HOST'] . BASEURL 
-				.'index.php?action=appeal&id='.intval($newId).'">тут</a>', FALSE));
+				.'index.php?page=appeal&id='.intval($newId).'">тут</a>', FALSE));
 	}
 	exit($data->jsonError('error', '', 'Какаето ошипко', $newId));
 }
