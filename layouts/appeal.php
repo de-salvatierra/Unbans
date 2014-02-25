@@ -91,7 +91,7 @@ if($commentId = filter_input(INPUT_POST, 'commentid'))
 		$js .= "<li><a href=\"#\" id=\"DELETE\" class=\"changeStatus\">Удалить</a></li></ul>";
 		
 		// Останавливаем скрипт с выводом нового выпадающего меню
-		exit("$('#commAct').html('{$js}').removeClass('open');");
+		exit("$('#commAct{$commentId}').html('{$js}').removeClass('open');");
 	}
 	
 	// Если запись не обновилась, выводим такую вот ошибку
@@ -383,8 +383,8 @@ if($action = filter_input(INPUT_POST, 'action'))
 							<span class="badge">
 								<?php echo date('d.m.Y H:i', $comment['date']);?>
 							</span>
-							<?php echo htmlspecialchars_decode($comment['userName']);
-							
+							<b><?php echo htmlspecialchars_decode($comment['userName']);?></b>
+							<?php
 							// Если админ, то выводим мыло и IP комментатора
 							if($data->admin):?>
 							<div class="pull-right">
@@ -405,7 +405,7 @@ if($action = filter_input(INPUT_POST, 'action'))
 						// Админу выводим дропдаун для смены статуса/удаления комментария, 
 						// а юзерам ничего не выводим тут =)
 						if($data->admin):?>
-						<div class="dropdown" id="commAct">
+						<div class="dropdown" id="commAct<?php echo $comment['id']?>">
 							<button 
 								data-toggle="dropdown" 
 								class="btn btn-<?php echo $data->commStatus[$comment['status']]['class']?>">
