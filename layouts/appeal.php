@@ -234,6 +234,16 @@ if($action = filter_input(INPUT_POST, 'action'))
 								<?php echo $item['steamid']?>
 							</td>
 						</tr>
+						
+						<tr>
+							<td>
+								<span class="glyphicon glyphicon-globe"></span>
+								<b>IP:</b>
+							</td>
+							<td>
+								<?php echo long2ip($item['userip'])?>
+							</td>
+						</tr>
 						<?php endif;?>
 						
 						<tr>
