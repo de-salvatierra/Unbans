@@ -248,7 +248,7 @@ class System {
 			$msg2 = 'Создана новая заявка на разбан<br />';
 			$msg2 .= 'Номер новой заявки - '.intval($newId).'<br />';
 			$msg2 .= 'Ник игрока - '.$this->safe($data['nickname']).'<br />';
-			$msg2 .= 'Для рассмотрения заявки перейдите по <a href="http://'.$_SERVER['HTTP_HOST'] . BASEURL .'index.php?action=admin&c=appeal&id='.intval($newId).'">этой ссылке</a>.';
+			$msg2 .= 'Для рассмотрения заявки перейдите по <a href="http://'.$_SERVER['HTTP_HOST'] . BASEURL .'index.php?page=appeal&id='.intval($newId).'">этой ссылке</a>.';
 			$this->sendMail(implode(', ', $emails), 'Новая заявка', $msg2);
 			
 			return $newId;
