@@ -204,7 +204,7 @@ if($action = filter_input(INPUT_POST, 'action'))
 </div>
 <div class="panel-body">
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-md-6 col-sm-6">
 			<div class="panel panel-warning">
 				<div class="panel-heading text-center">
 					<h3>Детали</h3>
@@ -350,7 +350,7 @@ if($action = filter_input(INPUT_POST, 'action'))
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6 col-md-6 col-sm-6">
 			<div class="panel panel-warning">
 				<div class="panel-heading text-center">
 					<h3>Комментарии</h3>
