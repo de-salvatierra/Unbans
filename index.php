@@ -20,7 +20,7 @@ if(!$action = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS)) {
 	$c = 'index';
 }
 else {
-	$c = $action;
+	$c = preg_replace('#[\W\.]#', '', $action);
 }
 
 $file = __DIR__ . "/layouts/{$c}.php";
