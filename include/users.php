@@ -9,6 +9,6 @@ return array(
 	'user' => array(
 		'email' => 'user2@example.com',
 		'password' => 'a01610228fe998f515a72dd730294d87',
-		'admin' => TRUE
+		'admin' => FALSE
 	),
 );
