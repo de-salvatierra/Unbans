@@ -20,6 +20,11 @@ class System {
 	 * @var boolean Проверка пользователя на пользователя
 	 */
 	public $user		= FALSE;
+	
+	/**
+	 * @var string Почта пользователя
+	 */
+	public $userEmail		= NULL;
 
 	/**
 	 * @var boolean Проверка пользователя на админа
@@ -145,6 +150,7 @@ class System {
 				// Задаем переменные
 				$this->user = $_SESSION['user'];
 				$this->admin = $users[$_SESSION['user']]['admin'];
+				$this->userEmail = $users[$_SESSION['user']]['email'];
 			}
 		}
 	}
@@ -284,7 +290,7 @@ class System {
 				'appealId' => intval($id),
 				'text' => $this->safe($text),
 				'date' => time(),
-				'status' => self::COMMENT_CREATED
+				'status' => $this->admin ? self::COMMENT_ACTIVE : self::COMMENT_CREATED
 			),
 		);
 		

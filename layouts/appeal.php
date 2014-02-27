@@ -107,13 +107,24 @@ if($action = filter_input(INPUT_POST, 'action'))
 	if($action === 'addComment')
 	{
 		// Получаем данные из запроса
-		$username = filter_input(INPUT_POST, 'username');
-		$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+		$username = $data->user ? $data->user : filter_input(INPUT_POST, 'username');
+		$email = $data->user ? $data->userEmail : filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 		$text = filter_input(INPUT_POST, 'comment');
 		
 		// Проверяем капчу
-		if(!isset($_POST['captcha']) || ($_POST['captcha'] != $_SESSION['captcha_keystring']))
-		{
+		if(
+			!$data->user
+				&&
+			(
+				!isset($_POST['captcha'])
+					||
+				(
+					$_POST['captcha'] 
+						!= 
+					$_SESSION['captcha_keystring']
+				)
+			)
+		) {
 			// Если капча неверна, возвращаем ошибку
 			exit($data->jsonError('error', 'captcha', 'Неверно введен код проверки'));
 		}
@@ -453,6 +464,7 @@ if($action = filter_input(INPUT_POST, 'action'))
 						onclick="$('#addCommentForm').slideToggle();">Добавить комментарий</button>
 					<div id="addCommentForm" style="display: none">
 						<br />
+						<?php if(!$data->user):?>
 						<div class="form-group">
 							<input type="text" class="form-control" id="username" maxlength="20" placeholder="Ваше имя">
 							<p class="help-block hidden" id="username-msg"></p>
@@ -461,10 +473,12 @@ if($action = filter_input(INPUT_POST, 'action'))
 							<input type="email" class="form-control" id="email" placeholder="Ваш E-mail">
 							<p class="help-block hidden" id="email-msg"></p>
 						</div>
+						<?php endif;?>
 						<div class="form-group">
 							<textarea class="form-control" id="comment" rows="5" placeholder="Ваш комментарий"></textarea>
 							<p class="help-block hidden" id="comment-msg"></p>
 						</div>
+						<?php if(!$data->user):?>
 						<div class="form-group">
 							<label>
 								Проверочный код: 
@@ -477,6 +491,7 @@ if($action = filter_input(INPUT_POST, 'action'))
 							<input type="text" class="form-control" id="captcha" name="captcha" />
 							<p class="help-block hidden" id="captcha-msg"></p>
 						</div>
+						<?php endif;?>
 						<button type="button" id="addComment" class="btn btn-default">Отправить</button>
 					</div>
 				</div>
@@ -520,6 +535,7 @@ if($action = filter_input(INPUT_POST, 'action'))
 			$("div.form-group").removeClass("has-error");
 			$("p.help-block").html("").hide();
 			var err = 0;
+			<?php if(!$data->user):?>
 			if(!$("#username").val())
 			{
 				err++;
@@ -530,15 +546,16 @@ if($action = filter_input(INPUT_POST, 'action'))
 				err++;
 				addError('email', 'Неверно введена почта');
 			}
-			if($("#comment").val().length < 10)
-			{
-				err++;
-				addError('comment', 'Вы собираетесь оставить комментариф, но написали так мало букв, что смысл самого комментария настолько низок, что лучше его вообще не оставлять =)');
-			}
 			if(!$("#captcha").val())
 			{
 				err++;
 				addError('captcha', 'Введите код проверки');
+			}
+			<?php endif;?>
+			if($("#comment").val().length < 10)
+			{
+				err++;
+				addError('comment', 'Вы собираетесь оставить комментариф, но написали так мало букв, что смысл самого комментария настолько низок, что лучше его вообще не оставлять =)');
 			}
 			
 			if(err > 0)
@@ -555,10 +572,12 @@ if($action = filter_input(INPUT_POST, 'action'))
 			$.post(
 				"",
 				{
+					<?php if(!$data->user):?>
 					"username": $("#username").val(),
 					"email": $("#email").val(),
-					"comment": $("#comment").val(),
 					"captcha": $("#captcha").val(),
+					<?php endif;?>
+					"comment": $("#comment").val(),
 					"action": "addComment"
 				},
 				function(data)
