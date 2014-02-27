@@ -8,6 +8,7 @@ session_start();
 date_default_timezone_set('Europe/Moscow');
 
 // Системные константы
+define('UNBANS', TRUE);
 defined('__DIR__') or define('__DIR__', dirname(__FILE__));
 define('ROOTPATH', __DIR__ . DIRECTORY_SEPARATOR);
 define('BASEURL','/' . basename(__DIR__) . '/');

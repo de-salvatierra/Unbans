@@ -1,4 +1,12 @@
-<?php $page = filter_input(INPUT_GET, 'page')?>
+<?php 
+if(!defined('UNBANS'))
+{
+	header("HTTP/1.0 400 Bad Request");
+	exit('Ololo');
+}
+
+$page = filter_input(INPUT_GET, 'page')
+?>
 <header class="navbar" role="navigation">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="http://example.com">Какойто сайт</a>

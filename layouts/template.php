@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+if(!defined('UNBANS'))
+{
+	header("HTTP/1.0 400 Bad Request");
+	exit('Ololo');
+}
+?>
 <html lang="ru">
 	<head>
 		<meta charset="utf-8" />

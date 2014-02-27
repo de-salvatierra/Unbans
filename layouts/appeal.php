@@ -1,5 +1,11 @@
 <?php
 
+if(!defined('UNBANS'))
+{
+	header("HTTP/1.0 400 Bad Request");
+	exit('Ololo');
+}
+
 // Определенная заявка
 if($id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT)):
 	

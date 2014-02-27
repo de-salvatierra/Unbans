@@ -1,4 +1,9 @@
 <?php
+if(!defined('UNBANS'))
+{
+	header("HTTP/1.0 400 Bad Request");
+	exit('Ololo');
+}
 /**
  * Основной клас системы
  * 
@@ -314,7 +319,7 @@ class System {
 			switch($http)
 			{
 				case self::ERROR_AUTH:
-					header("HTTP/1.0 403 Not Authorized");
+					header("HTTP/1.0 401 Not Authorized");
 					break;
 				case self::ERROR_NOTFOUND:
 					header("HTTP/1.0 404 Not Found");

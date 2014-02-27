@@ -1,4 +1,9 @@
 <?php
+if(!defined('UNBANS'))
+{
+	header("HTTP/1.0 400 Bad Request");
+	exit('Ololo');
+}
 
 if(filesize(ROOTPATH . 'include/config.php') > 2)
 	header("Location: index.php");

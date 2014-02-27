@@ -1,4 +1,9 @@
 <?php
+if(!defined('UNBANS'))
+{
+	header("HTTP/1.0 400 Bad Request");
+	exit('Ololo');
+}
 $data->breadcrumbs =array(
 	array(
 		'text' => 'Главная',
