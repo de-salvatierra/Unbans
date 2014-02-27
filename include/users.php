@@ -8,7 +8,7 @@ return array(
 	),
 	'user' => array(
 		'email' => 'user2@example.com',
-		'password' => 'a01610228fe998f515a72dd730294d87',
+		'password' => '827ccb0eea8a706c4c34a16891f84e7b',
 		'admin' => FALSE
 	),
 );
