@@ -11,7 +11,10 @@ date_default_timezone_set('Europe/Moscow');
 define('UNBANS', TRUE);
 defined('__DIR__') or define('__DIR__', dirname(__FILE__));
 define('ROOTPATH', __DIR__ . DIRECTORY_SEPARATOR);
-define('BASEURL','/' . basename(__DIR__) . '/');
+$baseurl =  dirname($_SERVER['PHP_SELF']) . '/';
+if($baseurl === '//')
+	$baseurl = '/';
+define('BASEURL',$baseurl);
 
 include __DIR__ . '/include/System.php';
 $data = new System;
